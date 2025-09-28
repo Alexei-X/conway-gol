@@ -1,6 +1,14 @@
 CC := gcc
-CFLAGS := -Wall -Wextra
-LDFLAGS := -lSDL3
+
+OS := $(shell uname)
+ifeq ($(OS),Darwin)
+	CFLAGS = -Wall -Wextra -I/opt/homebrew/Cellar/sdl3/3.2.22/include/
+	LDFLAGS = -L/opt/homebrew/Cellar/sdl3/3.2.22/lib/ -lSDL3
+else ifeq ($(OS),Linux)
+	CFLAGS := -Wall -Wextra
+	LDFLAGS := -lSDL3
+endif
+
 SRC_DIR := src
 BUILD_DIR := build
 BIN_DIR := $(BUILD_DIR)/bin
