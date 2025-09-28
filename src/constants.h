@@ -9,7 +9,7 @@
 #define GRID_WIDTH 800
 #define GRID_HEIGHT 800
 #define GRID_DIM 800
-#define N_CELLS 10
+#define N_CELLS 20
 #define CELLS_SIZE GRID_DIM/N_CELLS
 #define GRID_CELLS_AREA N_CELLS*N_CELLS
 

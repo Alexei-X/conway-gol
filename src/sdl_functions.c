@@ -42,7 +42,7 @@ void fill_grid(struct Gol* gol_p, struct CellPopulation* cell_population_p) {
 	for (int i = 0; i < N_CELLS; i++) {
 		for (int j = 0; j < N_CELLS; j++) {
 			SDL_FRect cell = {i*CELLS_SIZE, j*CELLS_SIZE, CELLS_SIZE, CELLS_SIZE};
-			if (cell_population_p->cell_states_array[3*i + j] == ALIVE) SDL_SetRenderDrawColor(gol_p->renderer, 255, 255, 255, SDL_ALPHA_OPAQUE);
+			if (cell_population_p->cell_states_array[i + N_CELLS*j] == ALIVE) SDL_SetRenderDrawColor(gol_p->renderer, 255, 255, 255, SDL_ALPHA_OPAQUE);
 			else SDL_SetRenderDrawColor(gol_p->renderer, 0, 0, 0, SDL_ALPHA_OPAQUE);
 			SDL_RenderFillRect(gol_p->renderer, &cell);
 		}

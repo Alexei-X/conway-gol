@@ -12,7 +12,6 @@ int main(int argc, char* argv[]) {
 	}
 
 	struct CellPopulation* cell_population_p = init_cell_population();
-
 	while (running) {
 		SDL_Event event;
 
@@ -26,7 +25,7 @@ int main(int argc, char* argv[]) {
 		draw_grid(&main_visualizer);
 		SDL_RenderPresent(main_visualizer.renderer);
 		update_cell_population(cell_population_p);
-		sleep(TICK/1000);
+		usleep(TICK*1000);
 	}
 
 	clear_program(&main_visualizer);
