@@ -1,7 +1,7 @@
 #ifndef CONSTANTS_H
 #define CONSTANTS_H
 
-#define WINDOW_TITLE "AlgoVision"
+#define WINDOW_TITLE "GameOfLife"
 #define WINDOW_WIDTH 800
 #define WINDOW_HEIGHT 600
 

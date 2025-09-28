@@ -6,17 +6,18 @@
 
 #define SDL_FLAGS SDL_INIT_VIDEO
 
-struct Visualizer {
+// Game Of Life (gol) structure 
+struct Gol {
 	SDL_Window* window;
 	SDL_Renderer* renderer;
 };
 
-bool init_visualizer(struct Visualizer* visualizer_p);
-void clear_program(struct Visualizer* visualizer_p);
+bool init_visualizer(struct Gol* gol_p);
+void clear_program(struct Gol* gol_p);
 
 int main(int argc, char* argv[]) {
 
-	struct Visualizer main_visualizer;
+	struct Gol main_visualizer;
 	bool running = true;
 
 	if (!init_visualizer(&main_visualizer)) {
@@ -40,31 +41,31 @@ int main(int argc, char* argv[]) {
 	return 0;
 }
 
-bool init_visualizer(struct Visualizer* visualizer_p) {
+bool init_visualizer(struct Gol* gol_p) {
 	if (!SDL_Init(SDL_FLAGS)) {
 		fprintf(stderr, "Error initializing SDL library: %s\n", SDL_GetError());
 		return false;
 	}
 	printf("SDL library initalized !\n");
 
-	visualizer_p->window = SDL_CreateWindow(WINDOW_TITLE, WINDOW_WIDTH, WINDOW_HEIGHT, SDL_WINDOW_OPENGL);
-	if (visualizer_p->window == NULL) {
+	gol_p->window = SDL_CreateWindow(WINDOW_TITLE, WINDOW_WIDTH, WINDOW_HEIGHT, SDL_WINDOW_OPENGL);
+	if (gol_p->window == NULL) {
 		SDL_LogError(SDL_LOG_CATEGORY_ERROR, "Error creating window: %s\n", SDL_GetError());
 		return false;
 	}
 
-	visualizer_p->renderer = SDL_CreateRenderer(visualizer_p->window, NULL);
-	if (visualizer_p->renderer == NULL) {
+	gol_p->renderer = SDL_CreateRenderer(gol_p->window, NULL);
+	if (gol_p->renderer == NULL) {
 		SDL_LogError(SDL_LOG_CATEGORY_ERROR, "Error creating renderer: %s\n", SDL_GetError());
 		return false;
 	}
-	SDL_SetRenderDrawColor(visualizer_p->renderer, 100, 50, 75, SDL_ALPHA_OPAQUE);
+	SDL_SetRenderDrawColor(gol_p->renderer, 0, 0, 0, SDL_ALPHA_OPAQUE);
 
 	return true;
 }
 
-void clear_program(struct Visualizer* visualizer_p) {
-	SDL_DestroyRenderer(visualizer_p->renderer);
-	SDL_DestroyWindow(visualizer_p->window);
+void clear_program(struct Gol* gol_p) {
+	SDL_DestroyRenderer(gol_p->renderer);
+	SDL_DestroyWindow(gol_p->window);
 	SDL_Quit();
 }

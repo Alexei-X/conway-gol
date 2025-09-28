@@ -6,7 +6,7 @@ BUILD_DIR := build
 BIN_DIR := $(BUILD_DIR)/bin
 OBJ_DIR := $(BUILD_DIR)/obj
 
-TARGET := algo_vision
+TARGET := gameoflife
 
 SRCS := $(shell find $(SRC_DIR) -name '*.c')
 OBJS := $(SRCS:%=$(OBJ_DIR)/%.o)
