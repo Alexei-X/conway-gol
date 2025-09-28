@@ -1,5 +1,6 @@
 CC := gcc
 CFLAGS := -Wall -Wextra
+LDFLAGS := -lSDL3
 SRC_DIR := src
 BUILD_DIR := build
 BIN_DIR := $(BUILD_DIR)/bin
@@ -18,7 +19,7 @@ all: $(BIN_DIR)/$(TARGET)
 
 $(BIN_DIR)/$(TARGET): $(OBJS)
 	@mkdir -p $(@D)
-	$(CC) $^ -o $@
+	$(CC) $^ -o $@ $(LDFLAGS)
 
 $(OBJ_DIR)/%.c.o: %.c
 	@mkdir -p $(@D)
