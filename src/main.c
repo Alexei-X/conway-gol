@@ -14,6 +14,7 @@ struct Gol {
 
 bool init_visualizer(struct Gol* gol_p);
 void clear_program(struct Gol* gol_p);
+void draw_grid(struct Gol* gol_p, int n_cells);
 
 int main(int argc, char* argv[]) {
 
@@ -33,6 +34,7 @@ int main(int argc, char* argv[]) {
 			}
 		}
 		SDL_RenderClear(main_visualizer.renderer);
+		draw_grid(&main_visualizer, 100);
 		SDL_RenderPresent(main_visualizer.renderer);
 	}
 
@@ -68,4 +70,14 @@ void clear_program(struct Gol* gol_p) {
 	SDL_DestroyRenderer(gol_p->renderer);
 	SDL_DestroyWindow(gol_p->window);
 	SDL_Quit();
+}
+
+void draw_grid(struct Gol* gol_p, int n_cells) {
+	SDL_SetRenderDrawColor(gol_p->renderer, 255, 255, 255, SDL_ALPHA_OPAQUE);
+	const float cell_size = GRID_DIM/n_cells;
+	for (int i = 0; i < n_cells+1; i++) {
+		SDL_RenderLine(gol_p->renderer, 0, i*cell_size, GRID_WIDTH, i*cell_size);
+		SDL_RenderLine(gol_p->renderer, i*cell_size, 0, i*cell_size, GRID_HEIGHT);
+	}
+	SDL_SetRenderDrawColor(gol_p->renderer, 0, 0, 0, SDL_ALPHA_OPAQUE);
 }

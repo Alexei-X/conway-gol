@@ -2,7 +2,10 @@
 #define CONSTANTS_H
 
 #define WINDOW_TITLE "GameOfLife"
-#define WINDOW_WIDTH 800
-#define WINDOW_HEIGHT 600
+#define WINDOW_WIDTH 1200
+#define WINDOW_HEIGHT 850
+#define GRID_WIDTH 800
+#define GRID_HEIGHT 800
+#define GRID_DIM 800
 
 #endif // CONSTANTS_H
