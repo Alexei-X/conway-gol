@@ -1,6 +1,5 @@
 #include "sdl_functions.h"
 
-
 bool init_visualizer(struct Gol* gol_p) {
 	if (!SDL_Init(SDL_FLAGS)) {
 		fprintf(stderr, "Error initializing SDL library: %s\n", SDL_GetError());
@@ -30,12 +29,22 @@ void clear_program(struct Gol* gol_p) {
 	SDL_Quit();
 }
 
-void draw_grid(struct Gol* gol_p, int n_cells) {
+void draw_grid(struct Gol* gol_p) {
 	SDL_SetRenderDrawColor(gol_p->renderer, 255, 255, 255, SDL_ALPHA_OPAQUE);
-	const float cell_size = GRID_DIM/n_cells;
-	for (int i = 0; i < n_cells+1; i++) {
-		SDL_RenderLine(gol_p->renderer, 0, i*cell_size, GRID_WIDTH, i*cell_size);
-		SDL_RenderLine(gol_p->renderer, i*cell_size, 0, i*cell_size, GRID_HEIGHT);
+	for (int i = 0; i < N_CELLS+1; i++) {
+		SDL_RenderLine(gol_p->renderer, 0, i*CELLS_SIZE, GRID_WIDTH, i*CELLS_SIZE);
+		SDL_RenderLine(gol_p->renderer, i*CELLS_SIZE, 0, i*CELLS_SIZE, GRID_HEIGHT);
 	}
 	SDL_SetRenderDrawColor(gol_p->renderer, 0, 0, 0, SDL_ALPHA_OPAQUE);
+}
+
+void fill_grid(struct Gol* gol_p, struct CellPopulation* cell_population_p) {
+	for (int i = 0; i < N_CELLS; i++) {
+		for (int j = 0; j < N_CELLS; j++) {
+			SDL_FRect cell = {i*CELLS_SIZE, j*CELLS_SIZE, CELLS_SIZE, CELLS_SIZE};
+			if (cell_population_p->cell_states_array[3*i + j] == ALIVE) SDL_SetRenderDrawColor(gol_p->renderer, 255, 255, 255, SDL_ALPHA_OPAQUE);
+			else SDL_SetRenderDrawColor(gol_p->renderer, 0, 0, 0, SDL_ALPHA_OPAQUE);
+			SDL_RenderFillRect(gol_p->renderer, &cell);
+		}
+	}
 }

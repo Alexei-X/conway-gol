@@ -1,4 +1,6 @@
 #include "sdl_functions.h"
+#include "gol_functions.h"
+#include <unistd.h>
 
 int main(int argc, char* argv[]) {
 
@@ -9,6 +11,8 @@ int main(int argc, char* argv[]) {
 		clear_program(&main_visualizer);
 	}
 
+	struct CellPopulation* cell_population_p = init_cell_population();
+
 	while (running) {
 		SDL_Event event;
 
@@ -18,11 +22,16 @@ int main(int argc, char* argv[]) {
 			}
 		}
 		SDL_RenderClear(main_visualizer.renderer);
-		draw_grid(&main_visualizer, 10);
+		fill_grid(&main_visualizer, cell_population_p);
+		draw_grid(&main_visualizer);
 		SDL_RenderPresent(main_visualizer.renderer);
+		update_cell_population(cell_population_p);
+		sleep(TICK/1000);
 	}
 
 	clear_program(&main_visualizer);
+	free(cell_population_p->cell_states_array);
+	free(cell_population_p);
 
 	return 0;
 }

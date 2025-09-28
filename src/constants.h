@@ -4,8 +4,16 @@
 #define WINDOW_TITLE "GameOfLife"
 #define WINDOW_WIDTH 1200
 #define WINDOW_HEIGHT 850
+#define TICK 500
+
 #define GRID_WIDTH 800
 #define GRID_HEIGHT 800
 #define GRID_DIM 800
+#define N_CELLS 10
+#define CELLS_SIZE GRID_DIM/N_CELLS
+#define GRID_CELLS_AREA N_CELLS*N_CELLS
+
+#define ALIVE 1
+#define DEAD 0
 
 #endif // CONSTANTS_H

@@ -6,6 +6,7 @@
 #include <SDL3/SDL_main.h>
 #include <stdbool.h>
 #include "constants.h"
+#include "gol_functions.h"
 
 #define SDL_FLAGS SDL_INIT_VIDEO
 
@@ -17,6 +18,7 @@ struct Gol {
 
 bool init_visualizer(struct Gol* gol_p);
 void clear_program(struct Gol* gol_p);
-void draw_grid(struct Gol* gol_p, int n_cells);
+void draw_grid(struct Gol* gol_p);
+void fill_grid(struct Gol* gol_p, struct CellPopulation* cell_population_p);
 
 #endif // SDL_FUNCTIONS_H
