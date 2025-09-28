@@ -1,2 +1,2 @@
-# algo-vision
-This application allows to visualize the execution of some algorithms to specifically understand their actions. 
+# conway-gol
+Implementation of Conway's Game of life in C language :)
